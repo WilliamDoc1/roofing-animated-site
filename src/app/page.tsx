@@ -5,6 +5,7 @@ import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-mot
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import QuoteModal from '@/components/QuoteModal';
+import InlineQuoteForm from '@/components/InlineQuoteForm';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import StickyCTABar from '@/components/StickyCTABar';
 import {
@@ -245,33 +246,41 @@ export default function Home() {
             style={{ opacity: vignetteOpacity }}
           />
 
-          {/* Centered Headline Animation */}
+          {/* Headline + Inline Quote Form, settling in after the animation */}
           <motion.div
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pointer-events-auto max-w-4xl mx-auto"
+            className="absolute inset-0 z-20 flex items-center px-6 pointer-events-none"
             style={{ opacity: textOpacity, scale: textScale, y: textY }}
           >
-            <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
-              South Africa's Premier <span className="bg-gradient-to-r from-amber-300 via-white to-amber-200 bg-clip-text text-transparent">Roofing Specialists</span>
-            </h1>
+            <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-14 items-center pointer-events-auto">
+              <div>
+                <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
+                  South Africa's Premier <span className="bg-gradient-to-r from-amber-300 via-white to-amber-200 bg-clip-text text-transparent">Roofing Specialists</span>
+                </h1>
 
-            <p className="text-slate-200 text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-10 drop-shadow-lg font-medium">
-              Engineered Commercial, Industrial & Residential Roofing Systems. Free on-site property inspections and written guarantees across South Africa.
-            </p>
+                <p className="text-slate-200 text-base md:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow-lg font-medium">
+                  Engineered Commercial, Industrial & Residential Roofing Systems. Free on-site property inspections and written guarantees across South Africa.
+                </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <button
-                onClick={() => setIsQuoteOpen(true)}
-                className="px-8 py-4 rounded-full bg-[#0F2C59] border border-white/20 text-white font-bold text-sm hover:bg-[#1E3E62] transition-all shadow-2xl flex items-center space-x-2 transform hover:scale-105 active:scale-[0.97]"
-              >
-                <span>Request Free Property Inspection</span>
-                <ArrowRight className="w-4 h-4 text-amber-300" />
-              </button>
-              <a
-                href="/portfolio"
-                className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm hover:bg-white/20 transition-all shadow-lg"
-              >
-                Explore Portfolio
-              </a>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <button
+                    onClick={() => setIsQuoteOpen(true)}
+                    className="px-8 py-4 rounded-full bg-[#0F2C59] border border-white/20 text-white font-bold text-sm hover:bg-[#1E3E62] transition-all shadow-2xl flex items-center space-x-2 transform hover:scale-105 active:scale-[0.97]"
+                  >
+                    <span>Request Free Property Inspection</span>
+                    <ArrowRight className="w-4 h-4 text-amber-300" />
+                  </button>
+                  <a
+                    href="/portfolio"
+                    className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-sm hover:bg-white/20 transition-all shadow-lg"
+                  >
+                    Explore Portfolio
+                  </a>
+                </div>
+              </div>
+
+              <div className="hidden lg:block">
+                <InlineQuoteForm />
+              </div>
             </div>
           </motion.div>
 
